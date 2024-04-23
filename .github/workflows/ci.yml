@@ -29,14 +29,13 @@ jobs:
         profile: ["docker"] # TODO , "singularity", "conda"]
     steps:
       - name: Check out pipeline code
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+        uses: actions/checkout@v4
 
       - name: Cache Nextflow installation
         id: cache-software
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+        uses: actions/cache@v3
         with:
           path: |
-            /usr/local/bin/nextflow
             /usr/local/bin/nf-test
             /home/runner/.nf-test/nf-test.jar
           key: viralintegration-${{ runner.os }}-${{ matrix.NXF_VER }}
@@ -45,9 +44,6 @@ jobs:
         uses: nf-core/setup-nextflow@v1
         with:
           version: "${{ matrix.NXF_VER }}"
-
-      - name: Disk space cleanup
-        uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be # v1.3.1
 
       - name: Install nf-test
         if: steps.cache-software.outputs.cache-hit != 'true'
@@ -75,10 +71,12 @@ jobs:
 
       - name: Run nf-test
         run: |
-          nf-test test --profile "test,${{ matrix.profile }}" --junitxml=test.xml
+          nf-test test \
+            --profile=${{ matrix.profile }} \
+            workflows/tests/*.nf.test \
+            --tap=test.tap
 
-      - name: Publish Test Report
-        uses: mikepenz/action-junit-report@v3
-        if: always() # always run even if the previous step fails
+      - uses: pcolby/tap-summary@v1
         with:
-          report_paths: test.xml
+          path: >-
+            test.tap
