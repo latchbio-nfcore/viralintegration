@@ -77,9 +77,6 @@ jobs:
             --tap=test.tap
 
       - uses: pcolby/tap-summary@v1
-      - uses: pcolby/tap-summary@v1
         with:
-          path: >-
-            test.tap
           path: >-
             test.tap
