@@ -11,15 +11,15 @@ include { paramsSummaryLog; paramsSummaryMap; fromSamplesheet } from 'plugin/nf-
 include { FASTQC                      } from '../modules/nf-core/fastqc/main'
 include { TRIMMOMATIC                 } from '../modules/nf-core/trimmomatic/main'
 include { STAR_GENOMEGENERATE as STAR_GENOMEGENERATE_HOST
-          STAR_GENOMEGENERATE as STAR_GENOMEGENERATE_PLUS } from '../modules/nf-core/star/genomegenerate/main'
+            STAR_GENOMEGENERATE as STAR_GENOMEGENERATE_PLUS } from '../modules/nf-core/star/genomegenerate/main'
 include { STAR_ALIGN as STAR_ALIGN_HOST
-          STAR_ALIGN as STAR_ALIGN_PLUS } from '../modules/nf-core/star/align/main'
+            STAR_ALIGN as STAR_ALIGN_PLUS } from '../modules/nf-core/star/align/main'
 include { SAMTOOLS_SORT as SAMTOOLS_SORT_PLUS
-          SAMTOOLS_SORT as SAMTOOLS_SORT_VALIDATE
-          SAMTOOLS_SORT as SAMTOOLS_SORT_DUPLICATES } from '../modules/nf-core/samtools/sort/main'
+            SAMTOOLS_SORT as SAMTOOLS_SORT_VALIDATE
+            SAMTOOLS_SORT as SAMTOOLS_SORT_DUPLICATES } from '../modules/nf-core/samtools/sort/main'
 include { SAMTOOLS_INDEX as SAMTOOLS_INDEX_PLUS
-          SAMTOOLS_INDEX as SAMTOOLS_INDEX_VALIDATE
-          SAMTOOLS_INDEX as SAMTOOLS_INDEX_DUPLICATES } from '../modules/nf-core/samtools/index/main'
+            SAMTOOLS_INDEX as SAMTOOLS_INDEX_VALIDATE
+            SAMTOOLS_INDEX as SAMTOOLS_INDEX_DUPLICATES } from '../modules/nf-core/samtools/index/main'
 include { MULTIQC                     } from '../modules/nf-core/multiqc/main'
 ch_igvjs_VIF             = file("$projectDir/assets/igvjs_VIF.html", checkIfExists: true)
 
