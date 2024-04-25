@@ -1,8 +1,8 @@
 repository_type: pipeline
 files_unchanged:
-  - assets/nf-core-variantmtb_logo_light.png
-  - docs/images/nf-core-variantmtb_logo_light.png
-  - docs/images/nf-core-variantmtb_logo_dark.png
+  - assets/nf-core-viralintegration_logo_light.png
+  - docs/images/nf-core-viralintegration_logo_light.png
+  - docs/images/nf-core-viralintegration_logo_dark.png
 lint:
   multiqc_config:
     report_comment: False
